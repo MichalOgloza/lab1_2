@@ -30,9 +30,14 @@ public class Payment {
         this.amount = amount;
     }
 
+    public static Payment getPayment(Id id, ClientData clientData, Money amount)
+    {
+        return new Payment(id, clientData, amount);
+    }
+
     public Payment rollBack() {
         Id id = Id.generate();
 
-        return new Payment(id, clientData, amount.multiplyBy(-1));
+        return getPayment(id, clientData, amount.multiplyBy(-1));
     }
 }
